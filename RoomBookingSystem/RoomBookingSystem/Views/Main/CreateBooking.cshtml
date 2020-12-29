@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "CreateBooking";
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+}
+
+
+<div class="container col-md-4 mb-3 ">
+    <div class="container-fluid">
+        <div class="form-group">
+            <form method="post">
+                <p>Start Date:</p>
+                <input id="Start" class="form-control mb-2" name="Start" type="datetime-local">
+                <br />
+                <p>End Date:</p>
+                <input id="End" class="form-control mb-2" name="End" type="datetime-local">
+                <br />
+                <p>Priority:</p>
+                <input id="Priority" class="form-control mb-2" name="Priority" type="text">
+                <br />
+                <p>Rooms:</p>
+                @foreach (var room in Model.Rooms)
+                {
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="Room" value="@room.RoomNumber"> 
+                            @room.RoomNumber : @String.Join(", ", room.EquipmentName.ToArray()); 
+                        </label>
+                    </div>
+                }
+
+                <br />
+                <p>Is Internal:</p>
+                <p><input name="IsInternal" type="radio" value="True">Yes</p>
+                <p><input name="IsInternal" type="radio" value="False">No</p>
+
+
+                <input type="submit" class="btn btn-primary col-md-12 mb-12" value="Create">
+            </form>
+        </div>
+        </div>
+    </div>

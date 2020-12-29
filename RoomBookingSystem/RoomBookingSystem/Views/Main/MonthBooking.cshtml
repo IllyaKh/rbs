@@ -1,0 +1,81 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+    ViewBag.Title = "Bookings";
+}
+
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-3 m-2">
+
+            <a type="button" class="btn btn-primary m-2 float-right" href="/Main/WeekBooking">Yearly </a>
+            <a type="button" class="btn btn-primary m-2 float-right"  href="/Main/ShowTodayBookings">Daily </a>
+        </div>
+
+        <div class="row">
+            @foreach (var x in Model.Bookings)
+            {
+                <div class="col-md-4 col-sm-3 col-xs-3 col-mob">
+                    <div class="card" style="width: 23rem;">
+                        <div class="demo">
+                            <div style="display:inline;width:100px;height:200px;">
+                                <img src="~/Content/logos.png" width="330" height="280">
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@x.Start - @x.End Room: @x.Room</h5>
+                            <p class="card-text">Owner: @x.User</p>
+                            <p class="card-text">Priority: @x.Priority</p>
+
+                            @if (x.BookStatus == "Accepted" && x.Start <= DateTime.Now && x.End >= DateTime.Now)
+                            {
+                                <p class="card-text">Status: In-Progress</p>
+                            }
+                            else if (x.End < DateTime.Now)
+                            {
+                                <p class="card-text">Status: Expired</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">Status: @x.BookStatus</p>
+                            }
+
+
+                            @if (Session["Role"]?.ToString() == "Admin" || Session["User"]?.ToString() == x.User?.ToString())
+                            {
+                                @Html.ActionLink("Edit", "EditBookingConcrete",
+                                    new { controller = "Main", id = x.Id },
+                                    new { @class = "btn btn-primary  float-right" }
+                                    )
+                                @Html.ActionLink("Delete", "DeleteBooking",
+                                    new { controller = "Main", id = x.Id },
+                                    new { @class = "btn btn-primary  float-right" }
+                                    )
+                            }
+
+                            @if (Session["Role"]?.ToString() == "Admin" && x.End > DateTime.Now)
+                            {
+                                @Html.ActionLink("Accept", "AcceptBooking",
+                                new { controller = "Main", id = x.Id },
+                                new { @class = "btn btn-primary  float-right" })
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Item One Ends -->
+                </div>
+            }
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+</body>
+

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "CreateBooking";
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+}
+
+<div class="container col-md-4 mb-3 ">
+    <div class="container-fluid">
+        @Model
+        <p>
+
+        </p>
+        @Html.ActionLink("Return to main page", "ShowTodayBookings",
+new { controller = "Main" },
+new { @class = "btn btn-primary  float-right" }
+)
+    </div>
+</div>
+          

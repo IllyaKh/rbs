@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3703861-F7F5-4990-8E0D-6C34EB1A90B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RoomBookingSystem.BL</RootNamespace>
+    <AssemblyName>RoomBookingSystem.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\IConnectionAccessCreator.cs" />
+    <Compile Include="Interfaces\IAdminProxyDAO.cs" />
+    <Compile Include="Interfaces\INotifyReciever.cs" />
+    <Compile Include="DataAccess\SqlServerConnectionAccessClass.cs" />
+    <Compile Include="DataAccess\ConnectionAccessCreator.cs" />
+    <Compile Include="DataAccess\DataAccessInfo.cs" />
+    <Compile Include="DataAccess\IConnectionAccessClass.cs" />
+    <Compile Include="DataAccess\SqlServerAccessCreator.cs" />
+    <Compile Include="DTOs\BookingDTO.cs" />
+    <Compile Include="DTOs\BookingPopularityDTO.cs" />
+    <Compile Include="DTOs\EqipmentDTO.cs" />
+    <Compile Include="DTOs\LoginDTO.cs" />
+    <Compile Include="DTOs\RegisterDTO.cs" />
+    <Compile Include="DTOs\RoomDTO.cs" />
+    <Compile Include="DTOs\RoomEquipDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="Extensions\ColumnAttribute.cs" />
+    <Compile Include="Extensions\Convertor.cs" />
+    <Compile Include="Interfaces\IAdminDAO.cs" />
+    <Compile Include="Interfaces\IBookingScheduleService.cs" />
+    <Compile Include="Interfaces\ILoginService.cs" />
+    <Compile Include="Interfaces\IRegistrationService.cs" />
+    <Compile Include="Models\BookingSnapshot.cs" />
+    <Compile Include="Models\BookingSnapshots.cs" />
+    <Compile Include="Models\Enums\LoginStatuses.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Services\AdminDAO.cs" />
+    <Compile Include="Services\BookingScheduleService.cs" />
+    <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\RegistrationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

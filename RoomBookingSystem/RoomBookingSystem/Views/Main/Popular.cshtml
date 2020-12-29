@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Popular";
+    Layout = null;
+}
+
+    <div class="container">
+        @foreach (var x in Model.Popularity)
+        {
+        <p>@x.Number : @x.Room</p>
+        }
+        <br />
+        </div>
+
+

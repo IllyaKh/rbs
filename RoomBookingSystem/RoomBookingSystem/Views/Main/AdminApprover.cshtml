@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "AdminApprover";
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+}
+
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Admin panel</h1>
+    <p class="lead">Here you can approve requests for user registration.</p>
+</div>
+<div class="container">
+
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Login</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Desc.</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+            @foreach (var x in Model?.Users)
+            {
+            <tr>
+                <th scope="row">@x.Id</th>
+                <td> @x.Login</td>
+                <td> @x.Name</td>
+                <td> @x.NameOfRole</td>
+                <td> @x.Description</td>
+                <td>
+                    <div></div>
+
+                    @if (Session["Role"]?.ToString() == "Admin")
+                    {
+                        @Html.ActionLink("Accept", "AcceptUser",
+                            new { controller = "main", id = x.Id },
+                            new { @class = "btn btn-primary  float-right" }
+                            )
+                    }
+
+
+                    @if (Session["Role"]?.ToString() == "Admin")
+                    {
+                        @Html.ActionLink("Decline", "DeclineUser",
+                            new { controller = "Main", id = x.Id },
+                            new { @class = "btn btn-outline-primary float-right" }
+                            )
+                    }
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
